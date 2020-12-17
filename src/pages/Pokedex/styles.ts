@@ -20,7 +20,7 @@ export const Content = styled.div`
   min-width: 350px;
   border-radius: 5px;
 
-  img{
+  img {
     max-width: 100px;
     height: auto;
     margin-right: -28px;
@@ -39,24 +39,15 @@ export const RowSearch = styled.div`
   }
 `;
 
-
 export const Frame = styled.div`
   background: #dbdbdb;
-  padding: 30px;
+  padding: 25px;
   border-radius: 5px;
-  height: 50%;
+  min-height: 40%;
   width: 100%;
 
-  clip-path:
-		polygon(
-			100% 0,
-			100% 100%,
-			30px 100%,
-			0 calc(100% - 30px),
-			0 0
-		);
+  clip-path: polygon(100% 0, 100% 100%, 30px 100%, 0 calc(100% - 30px), 0 0);
 `;
-
 
 export const Screen = styled.div`
   display: flex;
@@ -73,5 +64,5 @@ export const Screen = styled.div`
 export const ButtonSearch = styled.button`
   background: none;
   border: none;
-  cursor:  ${props => props.disabled ? 'not-allowed' : 'pointer'};
+  cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
 `;

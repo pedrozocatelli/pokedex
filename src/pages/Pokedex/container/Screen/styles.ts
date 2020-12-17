@@ -2,12 +2,12 @@ import styled from 'styled-components';
 
 interface ContainerProps {
   myProps?: boolean;
-};
+}
 
 export const Container = styled.div<ContainerProps>`
   display: flex;
   flex-direction: row;
-  background: black;
+  background: #333;
   border-radius: 5px;
   width: 100%;
   height: 100%;
@@ -24,26 +24,32 @@ export const ErrorContainer = styled.div`
   width: 100%;
   height: 100%;
 
-  img{
+  img {
     max-width: 200px;
     height: auto;
     margin: 0px;
   }
-
-  h2{
-    color: #fff;
-    font-size: 20px;
-  }
-`; 
-
+`;
 
 export const Result = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
   width: 100%;
+  align-items: center;
+  justify-content: center;
 
-  h2 {
-    color: #fff;
+  > img {
+    height: auto;
+    min-width: 250px;
+    margin: 0px;
+  }
+
+  @media (max-width: 1366px) {
+    > img {
+      height: auto;
+      min-width: 200px;
+      margin: 0px;
+    }
   }
 `;

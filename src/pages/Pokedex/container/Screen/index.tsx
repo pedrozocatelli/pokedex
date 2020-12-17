@@ -14,26 +14,18 @@ interface ScreenProps {
 const Screen: React.FC<ScreenProps> = ({ loading, error, pokemon }) => {
   return (
     <Container>
-       {
-        pokemon && pokemon.name && (
-          <Result>
-            <h2>OLá</h2>
-          </Result>
-        )
-      }
-       {
-        loading && (
-          <PokeballLoader />
-        )
-      }
-      {
-        error && !loading && (
-          <ErrorContainer>
-            <img src={NotFound} alt="not-found" />
-            <h2>Pokémon not found</h2>
-          </ErrorContainer>
-        )
-      }
+      {pokemon?.name && (
+        <Result>
+          <img alt="pokemon" src={pokemon.sprites.front_default} />
+        </Result>
+      )}
+      {loading && <PokeballLoader />}
+      {error && !loading && (
+        <ErrorContainer>
+          <img src={NotFound} alt="not-found" />
+          <h2>Pokémon not found</h2>
+        </ErrorContainer>
+      )}
     </Container>
   );
 };
