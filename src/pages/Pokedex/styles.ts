@@ -19,12 +19,6 @@ export const Content = styled.div`
   width: 30%;
   min-width: 350px;
   border-radius: 5px;
-
-  img {
-    max-width: 100px;
-    height: auto;
-    margin-right: -28px;
-  }
 `;
 
 export const RowSearch = styled.div`
@@ -65,4 +59,10 @@ export const ButtonSearch = styled.button`
   background: none;
   border: none;
   cursor: ${props => (props.disabled ? 'not-allowed' : 'pointer')};
+
+  > img {
+    max-width: 100px;
+    height: auto;
+    margin-right: -28px;
+  }
 `;

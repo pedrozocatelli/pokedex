@@ -6,13 +6,13 @@ interface ContainerProps {
 
 export const Container = styled.div<ContainerProps>`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   background: #333;
   border-radius: 5px;
   width: 100%;
   height: 100%;
-  align-items: flex-start;
-  justify-content: center;
+  align-items: center;
+  justify-content: flex-start;
   position: relative;
 `;
 
@@ -23,6 +23,11 @@ export const ErrorContainer = styled.div`
   justify-content: center;
   width: 100%;
   height: 100%;
+
+  h2 {
+    color: #fff;
+    margin: 0px;
+  }
 
   img {
     max-width: 200px;
@@ -51,5 +56,17 @@ export const Result = styled.div`
       min-width: 200px;
       margin: 0px;
     }
+  }
+`;
+
+export const GenderContainer = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  img {
+    max-height: 35px;
+    width: auto;
   }
 `;

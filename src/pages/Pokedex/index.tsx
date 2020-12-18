@@ -10,7 +10,7 @@ import Screen from './container/Screen';
 import Informations from './container/Informations';
 
 const Pokedex: React.FC = () => {
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState('Bulbasaur');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [pokemon, setPokemon] = useState({});

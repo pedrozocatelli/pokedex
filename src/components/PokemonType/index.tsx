@@ -1,15 +1,21 @@
 import React from 'react';
 
 import { Container } from './styles';
+import { pokemonTypes } from '../../utils';
 
 interface PokemonTypeProps {
-  myProps?: boolean;
+  type?: string;
 }
 
-const PokemonType: React.FC<PokemonTypeProps> = () => {
+const PokemonType: React.FC<PokemonTypeProps> = ({ type }) => {
   return (
-    <Container>
-      <h1>Hello - PokemonType</h1>
+    <Container
+      bgColor={
+        pokemonTypes.find((ty: Record<string, string>) => ty.type === type)
+          ?.color
+      }
+    >
+      <span>{type}</span>
     </Container>
   );
 };
