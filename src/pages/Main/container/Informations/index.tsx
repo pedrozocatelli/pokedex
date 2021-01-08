@@ -32,7 +32,7 @@ const Informations: React.FC<InformationsProps> = ({ pokemon }) => {
               <PokemonType type={ty.name} />
             ))}
           </TypeRow>
-          <Stats type={typeList[0]}>Olá</Stats>
+          <Stats pokemon={pokemon} />
         </>
       )}
     </Container>

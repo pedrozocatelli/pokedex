@@ -1,21 +1,19 @@
 import styled from 'styled-components';
 
-import { darken } from 'polished';
-
 interface StatsInterface {
   bgColor?: string;
   secondaryBg?: string;
+  borderColor?: string;
 }
 
 export const Container = styled.div<StatsInterface>`
   background: ${props => props.bgColor || 'white'};
-  border: 3px solid
-    ${props => (props.bgColor && darken(0.3, props.bgColor)) || 'white'};
+  border: 2px solid ${props => props.borderColor || 'white'};
   width: 100%;
   height: 100%;
   border-radius: 10px;
   margin-top: 20px;
-  padding: 3px;
+  padding: 2px;
 
   span {
     color: #000;
@@ -38,13 +36,16 @@ export const Title = styled.div<StatsInterface>`
 export const Label = styled.div`
   display: flex;
   align-items: center;
-  width: 40%;
+  width: 32%;
+  justify-content: space-between;
+  padding: 0px 5px;
+  max-width: 130px;
 
-  div:first-child {
+  /* div:first-child {
     display: flex;
     justify-content: center;
     width: 70px;
-  }
+  } */
 
   div {
     font-size: 14px;
@@ -63,5 +64,5 @@ export const RowContainer = styled.div<RowContainerProps>`
   flex-direction: row;
   align-content: center;
   background: ${props => (props.bgColor ? props.bgColor : 'white')};
-  margin: 5px 0px;
+  margin: 2px 0px;
 `;

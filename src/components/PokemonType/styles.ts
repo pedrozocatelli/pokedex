@@ -21,6 +21,6 @@ export const Container = styled.div<ContainerProps>`
 
   span {
     text-transform: capitalize;
-    font-weight: 550;
+    font-weight: bold;
   }
 `;
