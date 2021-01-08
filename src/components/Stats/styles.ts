@@ -8,7 +8,7 @@ interface StatsInterface {
 
 export const Container = styled.div<StatsInterface>`
   background: ${props => props.bgColor || 'white'};
-  border: 2px solid ${props => props.borderColor || 'white'};
+  border: 3px solid ${props => props.borderColor || 'white'};
   width: 100%;
   height: 100%;
   border-radius: 10px;
@@ -36,22 +36,29 @@ export const Title = styled.div<StatsInterface>`
 export const Label = styled.div`
   display: flex;
   align-items: center;
-  width: 32%;
+  width: 33%;
   justify-content: space-between;
   padding: 0px 5px;
   max-width: 130px;
-
-  /* div:first-child {
-    display: flex;
-    justify-content: center;
-    width: 70px;
-  } */
 
   div {
     font-size: 14px;
     font-weight: 600;
     color: #000;
   }
+`;
+
+interface BarInterface {
+  barColor?: string;
+  borderColor?: string;
+  statusValue?: number;
+}
+
+export const Bar = styled.div<BarInterface>`
+  background: ${props => props.barColor || 'white'};
+  border: 1px solid ${props => props.borderColor || 'white'};
+  width: calc(67% * ${props => props.statusValue || 55} / 255);
+  margin: 1px 0px;
 `;
 
 interface RowContainerProps {
@@ -64,5 +71,5 @@ export const RowContainer = styled.div<RowContainerProps>`
   flex-direction: row;
   align-content: center;
   background: ${props => (props.bgColor ? props.bgColor : 'white')};
-  margin: 2px 0px;
+  margin: 3px 0px;
 `;

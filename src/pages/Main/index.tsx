@@ -25,6 +25,7 @@ const Pokedex: React.FC = () => {
     try {
       const response = await api.get(`/pokemon/${search.toLocaleLowerCase()}`);
       setPokemon(response.data);
+      console.log(response.data);
     } catch (err) {
       setError(true);
     }

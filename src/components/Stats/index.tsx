@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 
-import { Container, Title, RowContainer, Label } from './styles';
+import { Container, Title, RowContainer, Label, Bar } from './styles';
 
-import { pokemonTypes } from '../../utils';
+import { pokemonTypes, pokemonStats } from '../../utils';
 
 interface StatsProps {
   pokemon: Record<string, any>;
@@ -20,6 +20,54 @@ const Stats: React.FC<StatsProps> = ({ pokemon }) => {
     }
   }, [pokemon]);
 
+  const total = useMemo(() => {
+    if (pokemon) {
+      return pokemon.stats.reduce(
+        (n: number, { base_stat }: any) => n + base_stat,
+        0,
+      );
+    }
+  }, [pokemon]);
+
+  const renderStats = useCallback(() => {
+    if (pokemon) {
+      return pokemon.stats.map((sta: Record<string, any>) => (
+        <RowContainer
+          bgColor={
+            pokemonStats.find(
+              (ty: Record<string, string>) => ty.name === sta.stat?.name,
+            )?.color
+          }
+        >
+          <Label>
+            <div>
+              {
+                pokemonStats.find(
+                  (ty: Record<string, string>) => ty.name === sta.stat?.name,
+                )?.label
+              }
+              :
+            </div>
+            <div>{sta.base_stat}</div>
+          </Label>
+          <Bar
+            barColor={
+              pokemonStats.find(
+                (ty: Record<string, string>) => ty.name === sta.stat?.name,
+              )?.background
+            }
+            borderColor={
+              pokemonStats.find(
+                (ty: Record<string, string>) => ty.name === sta.stat?.name,
+              )?.border
+            }
+            statusValue={sta.base_stat}
+          />
+        </RowContainer>
+      ));
+    }
+  }, [pokemon]);
+
   return (
     <Container
       bgColor={
@@ -28,9 +76,13 @@ const Stats: React.FC<StatsProps> = ({ pokemon }) => {
         )?.color
       }
       borderColor={
-        pokemonTypes.find(
-          (ty: Record<string, string>) => ty.type === secondaryType?.name,
-        )?.color
+        primaryType === secondaryType
+          ? pokemonTypes.find(
+              (ty: Record<string, string>) => ty.type === secondaryType?.name,
+            )?.tertiaryColor
+          : pokemonTypes.find(
+              (ty: Record<string, string>) => ty.type === secondaryType?.name,
+            )?.color
       }
     >
       <Title
@@ -42,40 +94,17 @@ const Stats: React.FC<StatsProps> = ({ pokemon }) => {
       >
         <span>Stat</span>
       </Title>
-      <RowContainer bgColor="#ff5959">
+      {renderStats()}
+      <RowContainer
+        bgColor={
+          pokemonTypes.find(
+            (ty: Record<string, string>) => ty.type === primaryType?.name,
+          )?.secondaryColor
+        }
+      >
         <Label>
-          <div>HP:</div>
-          <div>79</div>
-        </Label>
-      </RowContainer>
-      <RowContainer bgColor="#F5AC78">
-        <Label>
-          <div>Attack:</div>
-          <div>79</div>
-        </Label>
-      </RowContainer>
-      <RowContainer bgColor="#FAE078">
-        <Label>
-          <div>Defense:</div>
-          <div>79</div>
-        </Label>
-      </RowContainer>
-      <RowContainer bgColor="#9DB7F5">
-        <Label>
-          <div>Sp. Atk:</div>
-          <div>79</div>
-        </Label>
-      </RowContainer>
-      <RowContainer bgColor="#A7DB8D">
-        <Label>
-          <div>Sp. Def:</div>
-          <div>79</div>
-        </Label>
-      </RowContainer>
-      <RowContainer bgColor="#FA92B2">
-        <Label>
-          <div>Sp. Def:</div>
-          <div>250</div>
+          <div>Total:</div>
+          <div>{total}</div>
         </Label>
       </RowContainer>
     </Container>
